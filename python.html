@@ -509,12 +509,85 @@ Unesi x: Hello world
 						<div>Svi programi koje smo do sada pisali izvršavali su se linearno</div>
 						<div class="fragment">Često postoji potreba da se deo programskog koda izvrši (ili ne izvrši) u zavisnosti od ispunjenosti nekog uslova</div>
 					</section>
+
+					<section>
+						<h2>if</h2>
+						<pre class="brush: python"><code data-trim>
+>>> x = 5
+>>> if x > 0: # if &lt;uslov>:
+	print "broj x je pozitivan" # telo
+	
+broj x je pozitivan
+						</code></pre>
+						<ul>
+							<li>Telo je zadato tako što je <strong>indentovano jedan stepen</strong> u odnosu na uslov</li>
+							<li>Dobra praksa (pisanje čistog koda) je deo sintakse programskog jezika Python</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>if ... else</h2>
+						<pre class="brush: python"><code data-trim>
+>>> x = -3
+>>> if x>0:
+	print "x je pozitivan"
+else:
+	print "x nije pozitivan"
+
+x nije pozitivan
+						</code></pre>
+						<ul>
+							<li><code><strong>else</strong></code> - kod koji će se izvršiti ukoliko uslov nije ispunjen</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>if ... elif ... else</h2>
+						<pre class="brush: python"><code data-trim>
+>>> x = 0
+>>> if x>0:
+	print "x je pozitivan"
+elif x==0:
+	print "x je neutralan"
+else:
+	print "x je negativan"
+
+x je neutralan
+						</code></pre>
+						<ul>
+							<li><code><strong>elif</strong></code> - može da se ponovi proizvoljan broj puta</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Zadavanje uslova</h2>
+						<div>Izraz čija vrednost može da bude <code><strong>True</strong></code> ili <code><strong>False</strong></code></div>
+						<div>Zadaje se korišćenjem <strong>operatora poređenja</strong></div>
+						<ul>
+							<li><code><strong>==</strong></code> (po čemu se razlikuje od <code><strong>=</strong></code>?)</li>
+							<li><code><strong>!=</strong></code></li>
+							<li><code><strong>&lt;</strong></code></li>
+							<li><code><strong>&lt;=</strong></code></li>
+							<li><code><strong>&gt;</strong></code></li>
+							<li><code><strong>&gt;=</strong></code></li>
+
+						</ul>
+
+					</section>
 				
 				</section>
 
 				<section>
 					<section>
 						<h2>Petlje</h2>
+					</section>
+					<section>
+						<h2>Motivacija</h2>
+						<div>Deo koda koji se više puta izvršava</div>
+						<ul>
+							<li class="fragment">Unapred zadat broj puta - <strong>for-petlja (konačne petlje)</strong></li>
+							<li class="fragment">Dok god važi neki uslov - <strong>while-petlja (uslovne petlje)</strong></li>
+						</ul>
 					</section>
 				</section>
 
