@@ -167,7 +167,7 @@
 							<li>otvorimo fajl</li>
 							<li>izvršimo ga [Run/Run module]</li>
 						</ul>	
-						<pre><code>
+						<pre><code data-trim>
 >>> ================================ RESTART ================================
 >>> 
 hello world!
@@ -181,7 +181,7 @@ hello world!
 							<li><code>print [vrednost]</code> ispiše vrednost na konzolu</li>
 							<li>ENTER - izvršili smo kod</li>
 						</ul>
-						<pre><code>
+						<pre><code data-trim>
 >>> print "Hello World!"
 hello world!
 							</code></pre>
@@ -193,6 +193,166 @@ hello world!
 
 					<section>
 						<h2>Tipovi podataka</h2>
+					</section>
+
+					<section>
+						<h2>Numerički tipovi podataka</h2>
+						<ul>
+							<li>Celi brojevi (<code>int</code>)</li>
+							<li>Razlomljeni brojevi (<code>float</code>)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Celi brojevi</h2>
+						<div>Na primer:</div>
+						<ul>
+							<li>5</li>
+							<li>0</li>
+							<li>-8</li>
+							<li>...</li>
+						</ul>
+						<pre><code data-trim>
+>>> x = 5
+>>> print x
+5
+>>> type(x)
+&lt;type 'int'&gt;
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Razlomljeni brojevi</h2>
+						<div>Na primer:</div>
+						<ul>
+							<li>3.14</li>
+							<li>2.72</li>
+							<li>-15.3333333</li>
+							<li>...</li>
+						</ul>
+						<pre><code data-trim>
+>>> x = 3.14
+>>> print x
+3.14
+>>> type(x)
+&lt;type 'float'&gt;
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Zašto nam trebaju razlomljeni brojevi?</h2>
+						<h2 class="fragment">Zašto nam trebaju celi brojevi?</h2>
+					</section>
+
+					<section>
+						<h2>Dinamički tipovi</h2>
+						<div>Kada smo zadavili numeričke vrednosti za varijablu x nigde nismo naveli kog tipa je varijabla</div>
+						<div><strong>Varijabli je dodeljena vrednost drugog tipa</strong></div>
+						<ul>
+							<li class="fragment">prvo je bila tipa <code>int</code></li>
+							<li class="fragment">pa je dodeljena vrednost tipa <code>float</code></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Operacije nad brojevima</h2>
+						<div>+</div>
+						<div>-</div>
+						<div>*</div>
+						<div>/</div>
+					</section>
+
+					<section>
+						<h2>Operacije nad brojevima</h2>
+						<pre><code data-trim>
+>>> 2+3
+5
+>>> 5.0/2
+2.5
+>>> 2+3
+5
+>>> 7-2
+5
+>>> 2*4
+8
+>>> 5.0/2
+2.5
+>>> 5/2
+2						</code></pre>
+					</section>
+
+					<section>
+						<h2>Operacije nad brojevima</h2>
+						<div>Poslednji primer (5/2) je vratio 2, a ne 2.5</div> 
+						<div>Zašto?</div> 
+						<ul>
+							<li class="fragment">Vrednost 5 je tipa <code>int</code> i vrednost 2 je tipa int</li>
+							<li class="fragment">Obzirom da su obe vrednosti celobrojne, radi se celobrojnom deljenje</li>
+							<li class="fragment">Ostatak pri deljenju se zanemaruje</li>
+							<li class="fragment">U novijim verzijama programskog jezika Python u ovakvim slučajevima se radi automatska konverzija u float</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Stringovi</h2>
+						<div>Tekstualne vrednosti</div> 
+						<div>Zadaju se između "" ili '', svejedno</div> 
+						<div class="fragment"><strong>Zašto nam nije dovoljno da imamo samo jedan način zadavanja stringova?</strong></div> 
+					</section>
+
+					<section>
+						<h2>Stringovi</h2>
+						<pre><code data-trim>
+>>> x = "Hello World!"
+>>> print x
+Hello World!
+>>> type(x)
+&lt;type 'str'>
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Operacije nad stringovima</h2>
+						<div><strong>+</strong> je spajanje stringova (konkatenacija) </div>
+						<div><strong>*</strong> je ponavljanje stringova</div>
+						<pre class="fragment"><code data-trim>
+>>> "abcd"+"efgh"
+'abcdefgh'
+>>> "abcd"*2
+'abcdabcd'
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Indeksiranje stringova</h2>
+						<div>Pronalaženje karaktera na zadatoj poziciji</div>
+						<div>Pozicija se zadaje kao <code>[indeks]</code></div>
+						<pre><code data-trim>
+>>> x = "Hello World"
+>>> x[0] #String počinje na poziciji 0
+'H'
+>>> x[4]
+'o'
+>>> x[-1] #Poslednji karakter se nalazi na poziciji -1
+'d'
+>>> x[-2]
+'l'
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Isecanje stringova</h2>
+						<div>Pronalaženje podstring za zadati početak i kraj</div>
+						<div>Početak i kraj se zadaju kao <code>[početak:kraj]</code></div>
+						<pre><code data-trim>
+>>> x = "Hello World"
+>>> x[4:7]
+'o W'
+>>> x[4:]
+'o World'
+>>> x[:6]
+'Hello '
+						</code></pre>
 					</section>
 
 				</section>
