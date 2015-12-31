@@ -167,7 +167,7 @@
 							<li>otvorimo fajl</li>
 							<li>izvršimo ga [Run/Run module]</li>
 						</ul>	
-						<pre><code data-trim>
+						<pre class="brush: python"><code data-trim>
 >>> ================================ RESTART ================================
 >>> 
 hello world!
@@ -181,7 +181,7 @@ hello world!
 							<li><code>print [vrednost]</code> ispiše vrednost na konzolu</li>
 							<li>ENTER - izvršili smo kod</li>
 						</ul>
-						<pre><code data-trim>
+						<pre class="brush: python"><code data-trim>
 >>> print "Hello World!"
 hello world!
 							</code></pre>
@@ -212,7 +212,7 @@ hello world!
 							<li>-8</li>
 							<li>...</li>
 						</ul>
-						<pre><code data-trim>
+						<pre class="brush: python"><code data-trim>
 >>> x = 5
 >>> print x
 5
@@ -230,7 +230,7 @@ hello world!
 							<li>-15.3333333</li>
 							<li>...</li>
 						</ul>
-						<pre><code data-trim>
+						<pre class="brush: python"><code data-trim>
 >>> x = 3.14
 >>> print x
 3.14
@@ -264,7 +264,7 @@ hello world!
 
 					<section>
 						<h2>Operacije nad brojevima</h2>
-						<pre><code data-trim>
+						<pre class="brush: python"><code data-trim>
 >>> 2+3
 5
 >>> 5.0/2
@@ -302,7 +302,7 @@ hello world!
 
 					<section>
 						<h2>Stringovi</h2>
-						<pre><code data-trim>
+						<pre class="brush: python"><code data-trim>
 >>> x = "Hello World!"
 >>> print x
 Hello World!
@@ -327,7 +327,7 @@ Hello World!
 						<h2>Indeksiranje stringova</h2>
 						<div>Pronalaženje karaktera na zadatoj poziciji</div>
 						<div>Pozicija se zadaje kao <code><strong>[indeks]</strong></code></div>
-						<pre><code data-trim>
+						<pre class="brush: python"><code data-trim>
 >>> x = "Hello World"
 >>> x[0] #String počinje na poziciji 0
 'H'
@@ -344,7 +344,7 @@ Hello World!
 						<h2>Isecanje stringova</h2>
 						<div>Pronalaženje podstring za zadati početak i kraj</div>
 						<div>Početak i kraj se zadaju kao <code><strong>[početak:kraj]</strong></code></div>
-						<pre><code data-trim>
+						<pre class="brush: python"><code data-trim>
 >>> x = "Hello World"
 >>> x[4:7]
 'o W'
@@ -367,9 +367,55 @@ Hello World!
 					</section>
 
 					<section>
+						<h2>Funkcije nad stringovima</h2>
+						<pre class="brush: python"><code data-trim>
+>>> s = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+>>> s.lower()
+'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+>>> s.upper()
+'LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT.'
+>>> l=s.split(" ")
+>>> l
+['Lorem', 'ipsum', 'dolor', 'sit', 'amet,', 'consectetur', 'adipiscing', 
+	'elit.']
+>>> " ".join(l)
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+>>> s.replace("s","-|-")
+'Lorem ip-|-um dolor -|-it amet, con-|-ectetur adipi-|-cing elit.'
+						</code></pre>
+					</section>
+
+					<section>					
+						<h2>Preuzimanje vrednosti sa tastature</h2>
+						<ul>
+							<li><code><strong>input(prompt)</strong></code> - prikazuje se <code><strong>prompt</strong></code>, a preuzeta vrednost se evaluira</li>
+							<li><code><strong>raw_input(prompt)</strong></code> - prikazuje se <code><strong>prompt</strong></code>, a vrednost se preuzima kao string</li>
+						</ul>
+						<pre class="brush: python"><code data-trim>
+>>> x = input("unesi x: ")
+unesi x: 3.14
+>>> x
+3.14
+>>> type(x)
+&lt;type 'float'>
+>>> x = input("unesi x: ")
+unesi x: Hello World!
+...
+SyntaxError: invalid syntax
+>>> x = raw_input("Unesi x: ")
+Unesi x: Hello world
+>>> x
+'Hello world'
+>>> type(x)
+&lt;type 'str'>						
+						</code></pre>
+
+					</section>
+
+					<section>
 						<h2>Liste</h2>
-						<div>Nizovi proizvoljnih vrednosti</div> 
-						<pre><code data-trim>
+						<div>Nizovi proizvoljnih vrednosti koje <strong>mogu da budu različitog tipa</strong></div> 
+						<pre class="brush: python"><code data-trim>
 >>> l=[1,2,"hello world"]
 >>> type(l)
 &lt;type 'list'>
@@ -380,6 +426,102 @@ Hello World!
 						</ul>
 					</section>
 
+					<section>
+						<h2>Liste</h2>
+						<pre class="brush: python"><code data-trim>
+>>> l = [1,2,"Hello World", 3]
+>>> l[0] #indeksiranje
+1
+>>> l[2]
+'Hello World'
+>>> l[-1]
+3
+>>> l[1:3] #isecanje
+[2, 'Hello World']
+>>> l+[4,5] #konkatenacija
+[1, 2, 'Hello World', 3, 4, 5]
+>>> l*2 #ponavljanje
+[1, 2, 'Hello World', 3, 1, 2, 'Hello World', 3]
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Dodavanje elementa u listu</h2>
+						<ul>
+							<li><code><strong>append(e)</strong></code> - dodavanje elementa na kraj liste</li>
+							<li><code><strong>insert(indeks, e)</strong></code> - umetanje elementa na zadatu poziciju</li>
+						</ul>
+						<pre class="brush: python"><code data-trim>
+>>> l = [1,2,"Hello World", 3]
+>>> l
+[1, 2, 'Hello World', 3]
+>>> l.append("dodati element")
+>>> l
+[1, 2, 'Hello World', 3, 'dodati element']
+>>> l.insert(2,"insertovani element")
+>>> l
+[1, 2, 'insertovani element', 'Hello World', 3, 'dodati element']
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Brisanje elementa iz liste</h2>
+						<ul>
+							<li><code><strong>del l[i]</strong></code> - brisanje elementa na indeksu <code><strong>i</strong></code> iz liste <code><strong>l</strong></code></li>
+							<li><code><strong>remove(e)</strong></code> - brisanje <strong>prve pojave</strong> elementa <code><strong>e</strong></code> iz liste</li>
+						</ul>
+						<pre class="brush: python"><code data-trim>
+>>> l
+[1, 2, 'insertovani element', 'Hello World', 3, 'dodati element']
+>>> del l[2]
+>>> l
+[1, 2, 'Hello World', 3, 'dodati element']
+>>> l.remove("dodati element")
+>>> l
+[1, 2, 'Hello World', 3]
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Izmena vrednosti elementa u listi</h2>
+						<ul>
+							<li><code><strong>l[i]=nova_vrednost</strong></code> 
+						</ul>
+						<pre class="brush: python"><code data-trim>
+>>> l
+[1, 2, 'Hello World', 3]
+>>> l[3]="nova vrednost"
+>>> l
+[1, 2, 'Hello World', 'nova vrednost']
+						</code></pre>
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Grananje</h2>
+					</section>
+					
+					<section>
+						<h2>Motivacija</h2>
+						<div>Svi programi koje smo do sada pisali izvršavali su se linearno</div>
+						<div class="fragment">Često postoji potreba da se deo programskog koda izvrši (ili ne izvrši) u zavisnosti od ispunjenosti nekog uslova</div>
+					</section>
+				
+				</section>
+
+				<section>
+					<section>
+						<h2>Petlje</h2>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Funkcije</h2>
+					</section>
 				</section>
 
 			</div>
