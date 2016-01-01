@@ -164,7 +164,7 @@
 						<h3>Hello World! - Python skript</h3>
 						<ul>
 							<li>programski kod se nalazi u fajlu <code><a href="primeri/python/helloWorld.py">helloWorld.py</a></code></li>
-							<li>otvorimo fajl</li>
+							<li>otvorimo fajl u Python idle</li>
 							<li>izvršimo ga [Run/Run module]</li>
 						</ul>	
 						<pre class="brush: python"><code data-trim>
@@ -717,12 +717,168 @@ dalje? ne
 						<div class="fragment"><a href="primeri/python/suma.py">Rešenje</a></div>
 					</section>
 
-
 				</section>
 
 				<section>
 					<section>
 						<h2>Funkcije</h2>
+					</section>
+					<section>
+						<h2>Motivacija</h2>
+						<div>Često smo u situaciji da nam isti fragment programskog koda treba na više mesta u programu</div>
+						<div class="fragment">Rešenje - funkcije:</div>
+						<ul>
+							<li class="fragment">Napišemo fragment koda i damo mu naziv - <strong>definicija funkcije</strong></li>
+							<li class="fragment">Izvršimo taj fragment koda navođenjem naziva funkcije - <strong>poziv funkcije</strong></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Definicija funkcije</h2>
+						<pre class="brush: python"><code data-trim>
+def &lt;naziv_funkcije>(&lt;parametar1>&lt;, parametar2>&lt;,...>): #zaglavlje funkcije
+	naredba1 #telo funkcije
+	&lt;naredba2
+	naredba 3
+	...>
+						</code></pre>
+						<div class="fragment">Primer - funkcija koja ispisuje više linija teksta: </div>
+						<pre class="fragment" class="brush: python"><code data-trim>
+>>> def prikazi_lorem_ipsum():
+	print "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	print "Nullam et posuere mauris."
+	print "Donec tempor erat blandit, consectetur quam sit amet."
+	print "Donec iaculis hendrerit porttitor."
+	print "Duis rhoncus gravida mi, vel accumsan odio lacinia at."						
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Poziv funkcije</h2>
+						<pre class="brush: python"><code data-trim>
+&lt;naziv_funkcije>(&lt;vrednost_parametra1>&lt;, vrednost_parametra2>&lt;, ...>)
+						</code></pre>
+						<div class="fragment">Primer - poziv funkcije koja ispisuje više linija teksta: </div>
+						<pre class="fragment brush: python"><code data-trim>
+prikazi_lorem_ipsum()
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Nullam et posuere mauris.
+Donec tempor erat blandit, consectetur quam sit amet.
+Donec iaculis hendrerit porttitor.
+Duis rhoncus gravida mi, vel accumsan odio lacinia at.
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Parametri funkcije</h2>
+						<div>Navede se lista parametara u definiciji funkcije</div>
+						<pre class="brush: python"><code data-trim>
+>>> def saberi(x,y):
+	print "x+y=",x+y
+						</code></pre>
+						<span class="fragment">
+							<div>U pozivu funkcije se navede lista konkretnih vrednost</div>
+							<pre class="brush: python"><code data-trim>
+>>> saberi(2,3)
+x+y= 5
+							</code></pre>
+						</span>
+						<div class="fragment">Vrednosti dodeljene parametrima <strong><code>x</code></strong> i <strong><code>y</code></strong> mogu se koristiti jedino u telu funkcije <strong><code>saberi</code></strong>.</div>
+					</section>
+
+					<section>
+						<h2>Povratna vrednost funkcije</h2>
+						<div>Funkcija vraća vrednost pomoću ključne reči <strong><code>return</code></strong></div>
+						<pre class="brush: python"><code data-trim>
+>>> def saberi(x,y):
+	return x+y
+
+>>> rezultat = saberi(2,3)
+>>> print rezultat
+5
+						</code></pre>
+						<div class="fragment">Omogućuje nam da rezultat izvršavanja funkcije možemo da koristimo izvan tela te funkcije.</div>
+						<div class="fragment">Kakva je razlika između <strong><code>return</code></strong> i <strong><code>print</code></strong>?</div>
+					</section>
+
+					<section>
+						<h2>Povratna vrednost funkcije</h2>
+						<div>Svaka funkcija u Python programu vraća vrednost!</div>
+						<div class="fragment">Ukoliko nismo vrednost vratili eksplicitno (pomoću return), biće vraćena vrednost <strong><code>None</code></strong></div>
+						<pre class="fragment brush: python"><code data-trim>
+>>> def saberi(x,y):
+	z = x+y
+
+	
+>>> rezultat=saberi(2,3)
+>>> print rezultat
+None
+						</code></pre>
+					</section>
+
+				</section>
+				<section>
+
+					<section>
+						<h2>Zadaci</h2>
+					</section>
+
+					<section>
+						<h2>Kalkulator</h2>
+						<div>Napisati Python program koji izvršava matematičke operacije nad brojevima</div>
+						<ul>
+							<li class="fragment">Korisnik unosi prvi broj</li>
+							<li class="fragment">Korisnik unosi matematičku operaciju operaciju (+,-,*,/)</li>
+							<li class="fragment">Korisnik unosi drugi broj</li>
+							<li class="fragment">Prikazuju se brojevi sa operacijom i rezultat</li>
+							<li class="fragment">Program se izvršava sve dok korisnik ne unese prazan string ""</li>
+						</ul>
+					</section>
+					
+					<section>
+						<h2>Kalkulator</h2>
+						<pre class="brush: python"><code data-trim>
+prvi broj: 5
+znak: +
+drugi broj: 3
+5.0+3.0=8.0
+prvi broj: 2
+znak: s
+drugi broj: 5
+Greska!
+prvi broj: 
+dovidjenja!
+						</code></pre>
+						<div class="fragment"><code><a href="primeri/python/kalkulator.py">Rešenje</a></code></div>
+
+					</section>
+
+					<section>
+						<h2>Pogađanje broja</h2>
+						<div>Napisati Python program koji u što manjem broj koraka pogađa broj koji je korisnik zamislio</div>
+						<ul>
+							<li class="fragment">Korisnik zamisli broj iz zadatog opsega</li>
+							<li class="fragment">Program ponavlja prikazivanje pokušaja da pogodi koji je to broj sve dok ne pogodi</li>
+							<li class="fragment">Ukoliko program nije pogodio zamišljeni broj, pita da li je zamišljeni broj veći ili manji od predloženog broja</li>
+							<li class="fragment">Kada pogodi, prikaže se broj pokušaja</li>
+							<li class="fragment">Program treba da prepozna da li je zamišljeni broj u zadatom opsegu nakon konačnog broja pokušaja i, ukoliko nije, ispiše poruku o grešci</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Pogađanje broja</h2>
+						<div>Ako imamo opseg brojeva od 0 do 100, koliko najviše koraka nam treba da bismo pronašli zamišljeni broj broj?</code>
+						<pre class="fragment brush: python"><code data-trim>
+Zamislite broj izmedju 0 i 100
+da li ste zamislili 50?ne
+da li je zamisljeni broj veci od 50?ne
+da li ste zamislili 24?ne
+da li je zamisljeni broj veci od 24?da
+da li ste zamislili 37?da
+broj koraka je 3
+dovidjenja
+						</code></pre>
+						<div class="fragment"><code><a href="primeri/python/pogadjanjeBroja.py">Rešenje</a></code></div>
+
 					</section>
 				</section>
 
