@@ -647,6 +647,76 @@ x je neutralan
 						<div class="fragment"><a href="primeri/python/faktorijel.py">Rešenje</a></div>
 					</section>
 
+					<section>
+						<h2>Zadatak - prosek</h2>
+						<div>Napisati Python program koji za zadati broj n računa prosek za sve brojeve od 1 do n</div>
+						<div class="fragment"><a href="primeri/python/prosek.py">Rešenje</a></div>
+					</section>
+					
+					<section>
+						<h2>while petlja</h2>
+						<div>Ponavljanje petlje dok je ispunjen uslov</div>
+						<pre class="brush: python"><code data-trim>
+>>>n = ""
+>>> while n!= "ne": #petlja se ponavlja dok n ne dobije vrednost "ne"
+	print "nova iteracija"
+	n=raw_input("dalje? ")
+
+nova iteracija
+dalje? da
+nova iteracija
+dalje? da
+nova iteracija
+dalje? ne
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>beskonačna petlja</h2>
+						<div>Šta bi se desilo da smo izostavili <strong><code>n=raw_input("dalje? ")</code></strong>?</div>
+						<pre class="brush: python"><code data-trim>
+>>>n = ""
+>>> while n!= "ne": #petlja se ponavlja dok n ne dobije vrednost "ne"
+	print "nova iteracija"
+						</code></pre>
+
+						<div class="fragment">Ušli bismo u <strong>beskonačnu petlju</strong> - uslov bi bio stalno ispunjen i petlja nikada ne bi prestala da se izvršava</div>
+					
+						<pre class="brush: python fragment"><code data-trim>
+nova iteracija
+nova iteracija
+nova iteracija
+...
+						</code></pre>
+
+						<div class="fragment">U <strong>telu petlje</strong>, u nekom momentu, mora da se <strong>izmeni ispunjenost uslova</strong>, inače nastaje beskonačna petlja</div>
+
+					</section>
+
+					<section>
+						<h2>prekid petlje</h2>
+						<div><strong><code>break</code></strong></div>
+						<pre class="brush: python"><code data-trim>
+>>> while True: #uslov je stalno ispunjen: beskonačna petlja
+	n=raw_input("dalje? ")
+	if n=="ne":
+		break #izlaz i petlje
+	print "nova iteracija"
+	
+dalje? da
+nova iteracija
+dalje? da
+nova iteracija
+dalje? ne						
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Zadatak - suma</h2>
+						<div>Napisati Python program koji računa sumu brojeva koje unosi korisnik. Brojevi se preuzimaju sa tastature dok korinik ne unese prazan string "".</div>
+						<div class="fragment"><a href="primeri/python/suma.py">Rešenje</a></div>
+					</section>
+
 
 				</section>
 
