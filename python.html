@@ -820,11 +820,10 @@ None
 				<section>
 
 					<section>
-						<h2>Zadaci</h2>
+						<h2>Zadatak - kalkulator</h2>
 					</section>
-
 					<section>
-						<h2>Kalkulator</h2>
+						<h2>Zadatak - kalkulator</h2>
 						<div>Napisati Python program koji izvršava matematičke operacije nad brojevima</div>
 						<ul>
 							<li class="fragment">Korisnik unosi prvi broj</li>
@@ -852,9 +851,14 @@ dovidjenja!
 						<div class="fragment"><code><a href="primeri/python/kalkulator.py">Rešenje</a></code></div>
 
 					</section>
+				</section>
+				<section>
 
 					<section>
-						<h2>Pogađanje broja</h2>
+						<h2>Zadatak - Pogađanje broja</h2>
+					</section>
+					<section>
+						<h2>Zadatak - Pogađanje broja</h2>
 						<div>Napisati Python program koji u što manjem broj koraka pogađa broj koji je korisnik zamislio</div>
 						<ul>
 							<li class="fragment">Korisnik zamisli broj iz zadatog opsega</li>
@@ -880,6 +884,225 @@ dovidjenja
 						<div class="fragment"><code><a href="primeri/python/pogadjanjeBroja.py">Rešenje</a></code></div>
 
 					</section>
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Zadatak - iks oks za dva igrača</h2>
+					</section>
+
+					<section>
+						<h2>Iks oks</h2>
+						<ul>
+							<li><strong>Iks oks</strong> (<strong>tic-tac-toe</strong>) je igra u kojoj dva igrača naizmenično upisuju <strong>X</strong> i <strong>O</strong> u matricu dimenzija <strong>3x3</strong></li>
+							<li>Pobeđuje onaj igrač koji horizontalno, vertikalno ili dijagonalno povežu 3 znaka</li>
+							<li class="fragment">Napisati Python program koji omogućuje da dva igrača igraju <strong>iks oks</strong></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>format table</h2>
+						<ul>
+							<li>Tabla je lista karaktera od 0 do 8</li>
+							<li class="fragment">Inicijalno je prazna</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def inicijalizuj_tablu():
+	return [' ']*9
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Raspored polja na tabli</h2>
+						<ul>
+							<li>Tabla se prikazuje u konzoli</li>
+						</ul>		
+						<pre class="fragment brush: python"><code>   |   |
+ 6 | 7 | 8
+   |   |
+-----------
+   |   |
+ 3 | 4 | 5
+   |   |
+-----------
+   |   |
+ 0 | 1 | 2
+   |   |	</code></pre>
+					</section>
+
+					<section>
+						<h2>prikaz table</h2>
+						<ul>
+							<li>Tabla se prikazuje u konzoli</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def prikazi_tablu(tabla):
+	print '   |   |'
+	print ' ' + tabla[6] + ' | ' + tabla[7] + ' | ' + tabla[8]
+	print '   |   |'
+	print '-----------'
+	print '   |   |'
+	print ' ' + tabla[3] + ' | ' + tabla[4] + ' | ' + tabla[5]
+	print '   |   |'
+	print '-----------'
+	print '   |   |'
+	print ' ' + tabla[0] + ' | ' + tabla[1] + ' | ' + tabla[2]
+	print '   |   |'
+	print ''
+						</code></pre>
+					</section>
+
+
+					<section>
+						<h2>preuzimanje podataka sa tastature</h2>
+						<ul>
+							<li>Igrači unose poziciju u koju se upisuje karakter</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def preuzmi_poziciju():
+	ret_val = ""
+	while not ret_val in "0 1 2 3 4 5 6 7 8".split(' '):
+		ret_val = raw_input("pozicija: ")
+	return int(ret_val)
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>upis podatka u tablu</h2>
+						<ul>
+							<li>Moguće je upisati podatak jedino ako je pozicija prazna</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def je_slobodno_mesto(tabla,pozicija):
+	return tabla[pozicija]==' '
+						</code></pre>
+						<ul>
+							<li class="fragment">Uneti karakter se upisuje u odgovarajuće mesto na tabli</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def upisi_poziciju(tabla, pozicija, karakter):
+	tabla[pozicija]=karakter						
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>popunjena tabla</h2>
+						<ul>
+							<li>Ukoliko nema više slobodnih polja na tabli, igra je završena</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def je_kraj(tabla):
+	for pozicija in range(9):
+		if je_slobodno_mesto(tabla,pozicija):
+			return False
+	return True
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>pobeda</h2>
+						<ul>
+							<li>Ukoliko je igrač povezao dva polja, pobedio je</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def je_pobedio(tabla, znak):
+	return ((tabla[6] == znak and tabla[7] == znak and tabla[8] == znak) or # gornja horizontala
+		(tabla[3] == znak and tabla[4] == znak and tabla[5] == znak) or # srednja horizontala
+		(tabla[0] == znak and tabla[1] == znak and tabla[2] == znak) or # donja horizontala
+		(tabla[6] == znak and tabla[3] == znak and tabla[0] == znak) or # znakva vertikala
+		(tabla[7] == znak and tabla[4] == znak and tabla[1] == znak) or # srednja vertikala
+		(tabla[8] == znak and tabla[5] == znak and tabla[2] == znak) or # desna vertikala
+		(tabla[6] == znak and tabla[4] == znak and tabla[2] == znak) or # dijagonala
+		(tabla[8] == znak and tabla[4] == znak and tabla[0] == znak)) # dijagonala
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Potez</h2>
+						<ul>
+							<li>Preuzima se pozicija sa tastatre</li>
+							<li class="fragment">Karakter se upiše u tablu na tu poziciju</li>
+							<li class="fragment">Proveri se da li je igra završena (pobeda ili popunjena tabla)</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def potez(tabla, znak):
+	print 'igra '+znak
+	pozicija = preuzmi_poziciju() #preuzimanje pozicije
+	#sve dok se ne unese slobodno mesto
+	while not je_slobodno_mesto(tabla,pozicija): 
+		pozicija = preuzmi_poziciju()
+	upisi_poziciju(tabla, pozicija, znak) #upis karaktera na poziciju
+	prikazi_tablu(tabla)
+	if je_pobedio(tabla, znak): #pobeda
+		print 'pobedio je '+znak
+		return True
+	if je_kraj(tabla): #popunjena tabla
+		print 'nema pobednika'
+		return True
+	return False
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Igra</h2>
+						<ul>
+							<li>Inicijalizuje se prazna tabla</li>
+							<li class="fragment">Igrači igraju naizmenično dok neko ne pobedi</li>
+							<li class="fragment">Proveri se da li je igra završena (pobeda ili popunjena tabla)</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def igra():
+	tabla = inicijalizuj_tablu() #prazna tabla
+	prikazi_tablu(tabla)
+	while True:
+		kraj = potez(tabla,'x') #igra x
+		if kraj:
+			break
+		kraj = potez(tabla,'o') #igra o
+		if kraj:
+			break
+	print 'kraj'
+						</code></pre>
+						<div class="fragment"><a href="primeri/python/iksOksDvaIgraca.py">Rešenje</a></div>
+
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Zadatak - iks oks protiv računara</h2>
+					</section>
+
+					<section>
+						<h2>Iks oks protiv računara</h2>
+						<ul>
+							<li>Kako igramo iks oks?</li>
+							<li class="fragment">Jednostavan problmen iz računarske inteligencije</li>
+							<li class="fragment">Svodi se na definisanje skupa pravila koja treba ispoštovati</li>
+							<li class="fragment">Pravila su koristili <i>Newell</i> i <i>Simon</i> u programu razvijenom 1972.</li>
+							<li class="fragment">Ako računar poštuje ta pravila, <strong>nikada ne gubi</strong></li>
+							<li class="fragment">Koji još problemi mogu tako da se rešavaju?</li>
+							<li class="fragment">Koji problemi <strong>ne mogu</strong> tako da se rešavaju?</li>
+							<li class="fragment">Zašto?</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Pravila</h2>
+						<ul>
+							<li>Kako igramo iks oks?</li>
+							<li class="fragment">Jednostavan problmen iz računarske inteligencije</li>
+							<li class="fragment">Svodi se na definisanje skupa pravila koja treba ispoštovati</li>
+							<li class="fragment">Ako računar poštuje ta pravila, <strong>nikada ne gubi</strong></li>
+							<li class="fragment">Koji još problemi mogu tako da se rešavaju?</li>
+							<li class="fragment">Koji problemi <strong>ne mogu</strong> tako da se rešavaju?</li>
+							<li class="fragment">Zašto?</li>
+						</ul>
+					</section>
+
 				</section>
 
 			</div>
