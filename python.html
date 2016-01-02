@@ -1083,7 +1083,6 @@ def igra():
 							<li class="fragment">Jednostavan problmen iz računarske inteligencije</li>
 							<li class="fragment">Svodi se na definisanje skupa pravila koja treba ispoštovati</li>
 							<li class="fragment">Pravila su koristili <i>Newell</i> i <i>Simon</i> u programu razvijenom 1972.</li>
-							<li class="fragment">Ako računar poštuje ta pravila, <strong>nikada ne gubi</strong></li>
 							<li class="fragment">Koji još problemi mogu tako da se rešavaju?</li>
 							<li class="fragment">Koji problemi <strong>ne mogu</strong> tako da se rešavaju?</li>
 							<li class="fragment">Zašto?</li>
@@ -1092,15 +1091,218 @@ def igra():
 
 					<section>
 						<h2>Pravila</h2>
+						<ol>
+							<li class="fragment"><strong>Pobeda</strong> - ako možeš da povičeš potez kojim ćeš pobediti, povuci taj potez</li>
+							<li class="fragment"><strong>Blokiranje</strong> - ako protivnik može da povuče potez kojim će pobediti, povuci taj potez</li>
+							<li class="fragment"><strong>Uglovi</strong> - ako je slobodno mesto u nekom od uglova, zauzmi ga</li>
+							<li class="fragment"><strong>Centar</strong> - ako je solbodan centar, zauzmi ga</li>
+							<li class="fragment"><strong>Stranice</strong> - ako je solbodno mesto na stranici, zauzmi ga</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>Intermezzo - još malo o listama</h2>
+						<pre class="fragment brush: python"><code data-trim>
+>>> l = [1,2,3]
+>>> l1 = l
+>>> l.append("novi element")
+>>> print l1
+[1, 2, 3, 'novi element']
+						</code></pre>
 						<ul>
-							<li>Kako igramo iks oks?</li>
-							<li class="fragment">Jednostavan problmen iz računarske inteligencije</li>
-							<li class="fragment">Svodi se na definisanje skupa pravila koja treba ispoštovati</li>
-							<li class="fragment">Ako računar poštuje ta pravila, <strong>nikada ne gubi</strong></li>
-							<li class="fragment">Koji još problemi mogu tako da se rešavaju?</li>
-							<li class="fragment">Koji problemi <strong>ne mogu</strong> tako da se rešavaju?</li>
-							<li class="fragment">Zašto?</li>
+							<li class="fragment">Izminili smo listu <strong><code>l</code></strong></li>
+							<li class="fragment">Pri tome se izmenila i lista <strong><code>l1</code></strong></li>
+							<li class="fragment">Šta se desilo?</li>
 						</ul>
+					</section>
+
+					<section>
+						<h2>Izmena lista - inicijalizacija</h2>
+						<pre class="brush: python"><code data-trim>
+>>> l = [1,2,3]
+						</code></pre>
+						<img class="fragment" src="img/python/dodavanjeUListu1.jpg"/>
+					</section>
+
+					<section>
+						<h2>Izmena lista - dodela vrednosti</h2>
+						<pre class="brush: python"><code data-trim>
+>>> l1 = l
+						</code></pre>
+						<img class="fragment" src="img/python/dodavanjeUListu2.jpg"/>
+					</section>
+
+					<section>
+						<h2>Izmena lista - dodavanje elementa</h2>
+						<pre class="brush: python"><code data-trim>
+>>> l.append("novi el")
+						</code></pre>
+						<img class="fragment" src="img/python/dodavanjeUListu3.jpg"/>
+					</section>
+
+					<section>
+						<h2>Kopiranje table</h2>
+						<ul>
+							<li>Možemo da proverimo da li potez vodi pobedi tako što ćemo da upišemo taj potez u tablu</li>
+							<li class="fragment">Tabla je lista i upisani element ostaje u listi</li>
+							<li class="fragment">Zato nam treba funkcija koja kopira tablu</li>
+							<li class="fragment">Izmena u kopiji table neće se odraziti na tablu</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def kopiraj_tablu(tabla):
+	nova_tabla = []
+	for e in tabla:
+		nova_tabla.append(e)
+	return nova_tabla
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Pravila</h2>
+						<ul>
+							<li>Implementirali smo ih u funkciji <strong><code>odredi_poziciju</code></strong></li>
+							<li class="fragment">Prvo poverimo koji je protivnikov znak</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def odredi_poziciju(tabla, znak):
+	if znak == "x":
+		protivnicki_znak = "o"
+	else:
+		protivnicki_znak = "x"
+...
+						</code></pre>
+						<div class="fragment">Zatim primenjujemo pravilo po pravilo</li>
+					</section>
+
+					<section>
+						<h2>1. Pobeda</h2>
+						<ul>
+							<li>Za svako slobodno mesto na tabli</li>
+							<li class="fragment">Napravimo kopiju table</li>
+							<li class="fragment">U kopiju upišemo znak na to slobodno mesto</li>
+							<li class="fragment">Proverimo da li smo pobedili</li>
+							<li class="fragment">Ako jesmo, vratimo poziciju tog mesta</li>
+							<li class="fragment">Zašto nam treba kopija table?</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+	# 1. Pobeda
+	for i in range(8):
+		if je_slobodno_mesto(tabla,i):
+			kopija = kopiraj_tablu(tabla)
+			upisi_poziciju(kopija,i, znak)
+			if je_pobedio(kopija, znak):
+				return i
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>2. Blokiranje</h2>
+						<ul>
+							<li>Za svako slobodno mesto na tabli</li>
+							<li class="fragment">Napravimo kopiju table</li>
+							<li class="fragment">U kopiju upišemo protivnikov znak na to slobodno mesto</li>
+							<li class="fragment">Proverimo da li je protivnik pobedio</li>
+							<li class="fragment">Ako jeste, vratimo poziciju tog mesta</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+	# 2. Blokiranje
+	for i in range(8):
+		if je_slobodno_mesto(tabla,i):
+			kopija = kopiraj_tablu(tabla)
+			upisi_poziciju(kopija,i, protivnicki_znak)
+			if je_pobedio(kopija, protivnicki_znak):
+				return i
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>3. Uglovi</h2>
+						<ul>
+							<li>Proverimo da li postoji slobodan ugao</li>
+							<li class="fragment">Ako postoji, vratimo njegovu poziciju</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+	# 3. Uglovi
+	for i in [0,2,6,8]:
+		if je_slobodno_mesto(tabla,i):
+			return i
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>4. Centar</h2>
+						<ul>
+							<li>Proverimo da li je slobodan centar</li>
+							<li class="fragment">Ako jeste, vratimo njegovu poziciju</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+	# 4. Centar
+	if je_slobodno_mesto(tabla,4):
+		return 4
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>5. Stranice</h2>
+						<ul>
+							<li>Proverimo da li je slobodno mesto na nekoj od stranica</li>
+							<li class="fragment">Ako jeste, vratimo njegovu poziciju</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+	# 5. Stranice
+	for i in [1,3,5,7]:
+		if je_slobodno_mesto(tabla,i):
+			return i
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Povlačenje poteza</h2>
+						<ul>
+							<li>Ako igra čovek, preuzimamo potez sa tastature</li>
+							<li class="fragment">Ako igra računar, odredimo potez prema pravilima</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def potez(tabla, znak, racunar):
+	print 'igra '+znak
+	
+	if racunar == False:
+		pozicija = preuzmi_poziciju()
+		while not je_slobodno_mesto(tabla,pozicija):
+			pozicija = preuzmi_poziciju()
+	else:
+		pozicija = odredi_poziciju(tabla, znak)
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Igra</h2>
+						<ul>
+							<li>Prvo igra čovek</li>
+							<li class="fragment">Zatim igra računar</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+def igra():
+	tabla = inicijalizuj_tablu()
+	prikazi_tablu(tabla)
+	while True:
+		kraj = potez(tabla,'x',False)
+		if kraj:
+			break
+		kraj = potez(tabla,'o',True)
+		if kraj:
+			break
+	print 'kraj'
+						</code></pre>
+						<div class="fragment"><a href="primeri/python/iksOks.py">Rešenje</a></div>
+					</section>
+
+					<section>
+						<h2>Proširenje</h2>
+						<ol>
+							<li class="fragment">Omogućiti da se na slučajan način odredi ko igra prvi (čovek ili računar)</li>
+							<li class="fragment">Omogućiti mod igre 2 od 3: pobednik je onaj ko pobedi u 2 od 3 igre</li>
+						</ol>		
 					</section>
 
 				</section>

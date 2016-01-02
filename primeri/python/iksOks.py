@@ -43,11 +43,59 @@ def prikazi_tablu(tabla):
 	print '   |   |'
 	print ''
 
-def potez(tabla, znak):
+def kopiraj_tablu(tabla):
+	nova_tabla = []
+	for e in tabla:
+		nova_tabla.append(e)
+	return nova_tabla
+
+def odredi_poziciju(tabla, znak):
+	if znak == "x":
+		protivnicki_znak = "o"
+	else:
+		protivnicki_znak = "x"
+
+	# 1. Pobeda
+	for i in range(8):
+		if je_slobodno_mesto(tabla,i):
+			kopija = kopiraj_tablu(tabla)
+			upisi_poziciju(kopija,i, znak)
+			if je_pobedio(kopija, znak):
+				return i
+
+	# 2. Blokiranje
+	for i in range(8):
+		if je_slobodno_mesto(tabla,i):
+			kopija = kopiraj_tablu(tabla)
+			upisi_poziciju(kopija,i, protivnicki_znak)
+			if je_pobedio(kopija, protivnicki_znak):
+				return i
+
+	# 3. Uglovi
+	for i in [0,2,6,8]:
+		if je_slobodno_mesto(tabla,i):
+			return i
+
+	# 4. Centar
+	if je_slobodno_mesto(tabla,4):
+		return 4
+
+	# 5. Stranice
+	for i in [1,3,5,7]:
+		if je_slobodno_mesto(tabla,i):
+			return i
+
+
+def potez(tabla, znak, racunar):
 	print 'igra '+znak
-	pozicija = preuzmi_poziciju()
-	while not je_slobodno_mesto(tabla,pozicija):
+	
+	if racunar == False:
 		pozicija = preuzmi_poziciju()
+		while not je_slobodno_mesto(tabla,pozicija):
+			pozicija = preuzmi_poziciju()
+	else:
+		pozicija = odredi_poziciju(tabla, znak)
+	
 	upisi_poziciju(tabla, pozicija, znak)
 	prikazi_tablu(tabla)
 	if je_pobedio(tabla, znak):
@@ -62,12 +110,19 @@ def igra():
 	tabla = inicijalizuj_tablu()
 	prikazi_tablu(tabla)
 	while True:
-		kraj = potez(tabla,'x')
+		kraj = potez(tabla,'x',False)
 		if kraj:
 			break
-		kraj = potez(tabla,'o')
+		kraj = potez(tabla,'o',True)
 		if kraj:
 			break
 	print 'kraj'
 
 igra()
+
+# t = ['1','1','1','1','1','1','1','1','1']
+# prikazi_tablu(t)
+# n_t = kopiraj_tablu(t)
+# n_t[2]='x'
+# prikazi_tablu(t)
+# prikazi_tablu(n_t)
