@@ -1307,6 +1307,210 @@ def igra():
 
 				</section>
 
+				<section>
+					<section>
+						<h2>Zadatak - Pygame iks oks</h2>
+					</section>
+
+					<section>
+						<h2>Pygame</h2>
+						<ul>
+							<li>Python biblioteka za pravljenje igrica</li>
+							<li class="fragment">Instalacija:</li>
+							<ol>
+								<li class="fragment">Skinuti <a href="http://www.pygame.org/download.shtml">msi installer</a> sa sajta http://www.pygame.org</li>
+								<li class="fragment">Pokrenuti installer</li>
+								<li class="fragment">Pratiti tok instalacije</li>
+							</ol>
+						</ul>		
+					</section>
+
+					<section>
+						<h2>Izgled gotove igrice</h2>
+						<img width="400" height="400" src="img/python/iksOks.jpg"/>
+					</section>
+
+					<section>
+						<h2>Python biblioteke</h2>
+						<ul>
+							<li>Skupovi gotovih funkcija (ne samo funkcija) za rad u specifičnim domenima</li>
+							<li class="fragment">Ne možemo unapred znati koje sve biblioteke će trebati korisnicima</li>
+							<li class="fragment">Zato se bibliteke distribuiraju odvojeno od Python interpretera</li>
+							<li class="fragment">U programu u kom ćemo ih koristiti moramo da ih uvezemo</li>
+						</ul>		
+						<pre class="fragment brush: python"><code data-trim>
+>>> import pygame # uvoženje biblioteke pygame
+>>> pygame.version.ver # ukoliko smo dobro instalirali bibliteku
+'1.9.1release' # biće prikazana verzija bibliteke
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Kostur Pygame programa</h2>
+						<ol>
+							<li class="fragment">Inicijalizacija modula</li>
+							<li class="fragment">Pravljenje radne površine</li>
+							<li class="fragment">Postavljanje naslova</li>
+							<li class="fragment">Ažuriranje radne površine</li>
+							<li class="fragment">Završetak igre i poništavanje inicijalizacije</li>
+							<li class="fragment">Gasenje programa</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>Kostur Pygame programa</h2>
+						<pre class="brush: python"><code data-trim>
+pygame.init() # inicijalizacija pygame modula
+povrsina = pygame.display.set_mode([600,600]) # pravljenje radne povrsine 
+                                              # 600px X 600px
+pygame.display.set_caption("iks oks") # postavljanje naslova prozora
+pygame.display.update() # azuriranje radne povrsine
+pygame.quit() # zavrsetak igre - ponistavanje inicijalizacija
+quit() # gasenje programa
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Game loop</h2>
+						<ul>
+							<li>Svaki korak u petlji je preuzimanje jednog događaja</li>
+							<ul>
+								<li class="fragment">Pomeraj miša</li>
+								<li class="fragment">Pritisak na dugme miša</li>
+								<li class="fragment">Puštanje dugmeta miša</li>
+								<li class="fragment">Pritisak na dugme na tastaturi</li>
+								<li class="fragment">...</li>
+							</ul>
+						</ul>
+						<pre class="fragment brush: python"><code data-trim>
+while not game_exit:
+	for event in pygame.event.get():
+		...
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Slike</h2>
+						<ul>
+							<li>Imamo tablu, sliku za <strong><code>X</code></strong> i sliku za <strong><code>O</code></strong></li>
+						</ul>
+						<div>
+							<img class="fragment" width="300" height="300" src="img/python/tabla.png"/>
+							<img class="fragment" width="97" height="97" src="img/python/x.png"/>
+							<img class="fragment" width="97" height="97" src="img/python/o.png"/>
+						</div>
+					</section>
+
+					<section>
+						<h2>Učitavanje slika</h2>
+						<ul>
+							<li>Zadaje se putanja do fajla slike</li>
+						</ul>
+						<pre class="fragment brush: python"><code data-trim>
+pozadina = pygame.image.load("tabla.png") # ucitavanje pozadine 
+x_img = pygame.image.load("x.png") # ucitavanje slike za X 
+o_img = pygame.image.load("o.png") # ucitavanje slike za O 
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Preuzmanje klika miša</h2>
+						<ul>
+							<li>U game loop možemo da preuzmemo koordinate površine na koju je kliknuo korisnik</li>
+						</ul>
+						<pre class="fragment brush: python"><code data-trim>
+for event in pygame.event.get():
+	if event.type == pygame.MOUSEBUTTONUP: # ako je dogadjaj klik misem
+		koordinate = pygame.mouse.get_pos() # preuzmemo koordinate
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Pretvaranje koordinata u poziciju na tabli</h2>
+						<ul>
+							<li>Koordinate su x i y pikseli na koje je kliknuo korisnik</li>
+							<li class="fragment">Pozicija na tabli je vrednost od 0 do 8 (indeks u listi)</li>
+							<li class="fragment">Kada preuzimamo polje na koje je kliknuo korisnik, treba nam da pretvorimo koordinate u poziciju</li>
+						</ul>
+						<pre class="fragment brush: python"><code data-trim>
+def pozicija_na_tabli(koordinate):
+	if koordinate[0]>=0 and koordinate[1]>=0 and 
+		koordinate[0]<=197 and koordinate[1]<=197:
+		return 6
+	if koordinate[0]>=200 and koordinate[1]>=0 and 
+		koordinate[0]<=397 and koordinate[1]<=197:
+		return 7
+	if koordinate[0]>=400 and koordinate[1]>=0 and 
+		koordinate[0]<=597 and koordinate[1]<=197:
+		return 8
+	...
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Pretvaranje pozicije na tabli u koordinate</h2>
+						<ul>
+							<li>... i obrnuto</li>
+							<li class="fragment">Kada iscrtavamo znake na tabli, treba nam koordinata za poziciju</li>
+						</ul>
+						<pre class="fragment brush: python"><code data-trim>
+def koordinate_pozicije(pozicija):
+	if(pozicija == 6):
+		return (0,0)
+	if(pozicija == 7):
+		return (200,0)
+	if(pozicija == 8):
+		return (400,0)
+	if(pozicija == 3):
+		return (0,200)
+	...
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Iscrtavanje svih znakova na tabli</h2>
+						<ul>
+							<li class="fragment">Prolazimo kroz tablu (listu)</li>
+							<li class="fragment">Ukoliko naiđemo na <strong><code>"x"</code></strong> dodamo sliku <strong><code>x.png</code></strong> na koordinate koje odgovaraju toj toj poziciji (indeksu u listi)</li>
+							<li class="fragment">Ukoliko naiđemo na <strong><code>"o"</code></strong> dodamo sliku <strong><code>o.png</code></strong> na koordinate koje odgovaraju toj toj poziciji (indeksu u listi)
+							</li>
+						</ul>
+						<pre class="fragment brush: python"><code data-trim>
+def iscrtaj_znakove(tabla, povrsina, x_img, o_img):
+	for i in range(len(tabla)):
+		if tabla[i]=="x":
+			povrsina.blit(x_img, koordinate_pozicije(i))
+		if tabla[i]=="o":
+			povrsina.blit(o_img, koordinate_pozicije(i))
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Iscrtavanje table</h2>
+						<ol>
+							<li class="fragment">Iscrtamo pozadinu</li>
+							<li class="fragment">Iscrtamo sve znakove na tabli</li>
+							<li class="fragment">Osvežimo radnu površinu</li>
+						</ol>
+						<pre class="fragment brush: python"><code data-trim>
+def iscrtaj_tablu(tabla, povrsina, pozadina, x_img, o_img):
+	povrsina.blit(pozadina, (0, 0)) # postavljanje pozadine
+	iscrtaj_znakove(tabla, povrsina, x_img, o_img) # iscrtaj sve znakove
+	pygame.display.update() # azuriranje radne povrsine
+						</code></pre>
+						<div class="fragment"><a href="primeri/python/iksOksPygame.py">Rešenje</a></div>
+					</section>
+
+					<section>
+						<h2>Proširenje</h2>
+						<ol>
+							<li class="fragment">Omogućiti da se igra ugasi na klik na <strong><code>x</code></strong></li>
+							<li class="fragment">Ispisati poruku o završektu igre na radnu površinu (sada se ispisuje u konzolu)</li>
+						</ol>		
+					</section>
+
+				</section>
+
 			</div>
 
 		</div>

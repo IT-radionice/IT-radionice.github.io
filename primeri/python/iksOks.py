@@ -56,7 +56,7 @@ def odredi_poziciju(tabla, znak):
 		protivnicki_znak = "x"
 
 	# 1. Pobeda
-	for i in range(8):
+	for i in range(9):
 		if je_slobodno_mesto(tabla,i):
 			kopija = kopiraj_tablu(tabla)
 			upisi_poziciju(kopija,i, znak)
@@ -64,7 +64,7 @@ def odredi_poziciju(tabla, znak):
 				return i
 
 	# 2. Blokiranje
-	for i in range(8):
+	for i in range(9):
 		if je_slobodno_mesto(tabla,i):
 			kopija = kopiraj_tablu(tabla)
 			upisi_poziciju(kopija,i, protivnicki_znak)
@@ -119,10 +119,3 @@ def igra():
 	print 'kraj'
 
 igra()
-
-# t = ['1','1','1','1','1','1','1','1','1']
-# prikazi_tablu(t)
-# n_t = kopiraj_tablu(t)
-# n_t[2]='x'
-# prikazi_tablu(t)
-# prikazi_tablu(n_t)
